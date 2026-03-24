@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anna Shevchenko — Luxury Makeup Artist Dubai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #1C1C1C;
+  --gold:    #C9A96E;
+  --gold2:   #E2C99A;
+  --silver:  #A8B4C0;
+  --cream:   #FAF8F5;
+  --cream2:  #F2EDE6;
+  --mid:     #4A4540;
+  --light:   #8A8278;
+  --white:   #FFFFFF;
+  --fh: 'Cormorant Garamond', Georgia, serif;
+  --fb: 'Jost', system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fb);background:var(--cream);color:var(--navy);overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s,backdrop-filter 0.4s;}
+.nav.scrolled{background:rgba(28,28,28,0.95);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--fh);font-size:1.15rem;font-weight:300;letter-spacing:0.18em;color:var(--white);text-transform:uppercase;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:2.5rem;}
+.nav-links a{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--navy);padding:0.6rem 1.6rem;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;transition:opacity 0.2s,transform 0.15s;}
+.nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{width:22px;height:1.5px;background:var(--white);transition:all 0.3s;}
+@media(max-width:768px){
+  .nav{padding:1.2rem 1.5rem;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--navy);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80') center/cover no-repeat;opacity:0.18;filter:grayscale(20%);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(28,28,28,0.85) 0%,rgba(28,28,28,0.4) 60%,rgba(201,169,110,0.08) 100%);}
+.hero-content{position:relative;z-index:2;max-width:700px;padding:9rem 3rem 5rem;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,169,110,0.4);color:var(--gold);padding:0.4rem 1.1rem;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
+.hero-badge::before{content:'';width:18px;height:1px;background:var(--gold);}
+.hero-h1{font-family:var(--fh);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:var(--white);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.4s forwards;}
+.hero-h1 em{font-style:italic;color:var(--gold);}
+.hero-h1 strong{font-weight:600;}
+.hero-sub{font-size:0.95rem;line-height:1.9;color:rgba(255,255,255,0.65);max-width:460px;margin-bottom:3rem;opacity:0;animation:fadeUp 0.8s 0.6s forwards;}
+.hero-actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 0.8s forwards;}
+.btn-primary{background:var(--gold);color:var(--navy);padding:1rem 2.4rem;font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:opacity 0.2s,transform 0.15s;}
+.btn-primary:hover{opacity:0.9;transform:translateY(-2px);}
+.btn-ghost{border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:1rem 2rem;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;transition:border-color 0.2s,color 0.2s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-stats{position:absolute;bottom:0;right:0;z-index:2;display:flex;gap:0;opacity:0;animation:fadeUp 0.8s 1s forwards;}
+.hero-stat{padding:2rem 2.5rem;background:rgba(28,28,28,0.8);backdrop-filter:blur(8px);border-top:1px solid rgba(201,169,110,0.2);border-left:1px solid rgba(201,169,110,0.1);text-align:center;}
+.hero-stat-num{font-family:var(--fh);font-size:2rem;font-weight:300;color:var(--gold);line-height:1;}
+.hero-stat-label{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:0.4rem;}
+@media(max-width:768px){
+  .hero-content{padding:7rem 1.5rem 4rem;}
+  .hero-stats{position:relative;flex-wrap:wrap;}
+  .hero-stat{flex:1;min-width:120px;padding:1.5rem 1rem;}
+}
+
+/* ── TRUST BAR ── */
+.trust{background:var(--navy);padding:1.1rem 3rem;border-top:1px solid rgba(201,169,110,0.15);border-bottom:1px solid rgba(201,169,110,0.15);}
+.trust-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:8px;padding:0.5rem 2rem;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+.trust-item svg{color:var(--gold);flex-shrink:0;}
+.trust-div{width:1px;height:20px;background:rgba(255,255,255,0.1);}
+@media(max-width:600px){.trust{padding:1rem 1.5rem;}.trust-item{padding:0.4rem 1rem;font-size:0.65rem;}}
+
+/* ── SECTION SHARED ── */
+.section-eyebrow{font-size:0.65rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.section-h2{font-family:var(--fh);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;color:var(--navy);}
+.section-h2 em{font-style:italic;color:var(--gold);}
+
+/* ── ABOUT / INTRO STRIP ── */
+.intro{padding:5rem 3rem;background:var(--white);}
+.intro-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.intro-img-wrap{position:relative;}
+.intro-img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:grayscale(15%);}
+.intro-img-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--gold);color:var(--navy);padding:1.2rem 1.6rem;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;line-height:1.5;}
+.intro-text .section-h2{margin-bottom:1.5rem;}
+.intro-body{font-size:0.95rem;line-height:1.95;color:var(--mid);margin-bottom:2rem;}
+.intro-creds{list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2.5rem;}
+.intro-cred{display:flex;align-items:center;gap:0.8rem;font-size:0.84rem;color:var(--mid);}
+.intro-cred::before{content:'→';color:var(--gold);font-family:var(--fh);font-size:1rem;}
+@media(max-width:900px){
+  .intro{padding:4rem 1.5rem 5rem;}
+  .intro-inner{grid-template-columns:1fr;gap:3rem;}
+  .intro-img-badge{right:0;}
+}
+
+/* ── SERVICES ── */
+.services{padding:6rem 3rem;background:var(--cream);}
+.services-inner{max-width:1100px;margin:0 auto;}
+.services-head{text-align:center;margin-bottom:4rem;}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:rgba(28,28,28,0.08);}
+.svc-card{background:var(--white);padding:2.5rem 2rem;transition:background 0.3s;}
+.svc-card:hover{background:var(--navy);}
+.svc-card:hover .svc-icon{color:var(--gold);}
+.svc-card:hover .svc-name{color:var(--white);}
+.svc-card:hover .svc-desc{color:rgba(255,255,255,0.6);}
+.svc-card:hover .svc-line{background:var(--gold);}
+.svc-icon{font-size:1.8rem;margin-bottom:1.2rem;transition:color 0.3s;}
+.svc-line{width:28px;height:1px;background:var(--gold);margin-bottom:1.2rem;transition:background 0.3s;}
+.svc-name{font-family:var(--fh);font-size:1.25rem;font-weight:400;color:var(--navy);margin-bottom:0.8rem;transition:color 0.3s;}
+.svc-desc{font-size:0.84rem;line-height:1.8;color:var(--light);transition:color 0.3s;}
+@media(max-width:900px){.services{padding:4rem 1.5rem;}.services-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.services-grid{grid-template-columns:1fr;}}
+
+/* ── PROBLEM ── */
+.problem{padding:6rem 3rem;background:var(--navy);overflow:hidden;position:relative;}
+.problem::before{content:'';position:absolute;top:-60px;right:-60px;width:400px;height:400px;border-radius:50%;background:rgba(201,169,110,0.04);pointer-events:none;}
+.problem-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.problem-left .section-eyebrow{color:var(--gold);}
+.problem-left .section-h2{color:var(--white);margin-bottom:1.5rem;}
+.problem-intro{font-size:0.95rem;line-height:1.9;color:rgba(255,255,255,0.55);margin-bottom:2.5rem;}
+.problem-turn{border-left:2px solid var(--gold);padding:1.2rem 1.5rem;background:rgba(201,169,110,0.06);}
+.problem-turn p{font-family:var(--fh);font-size:1.15rem;font-weight:300;color:var(--white);line-height:1.6;}
+.problem-turn p em{color:var(--gold);font-style:italic;}
+.problem-list{display:flex;flex-direction:column;gap:1px;margin-top:0;}
+.pain-item{background:rgba(255,255,255,0.04);padding:1.3rem 1.5rem;border-left:2px solid transparent;transition:border-color 0.3s,background 0.3s;}
+.pain-item:hover{border-left-color:var(--gold);background:rgba(201,169,110,0.07);}
+.pain-strong{font-size:0.88rem;font-weight:600;color:rgba(255,255,255,0.9);display:block;margin-bottom:0.3rem;}
+.pain-rest{font-size:0.83rem;line-height:1.7;color:rgba(255,255,255,0.45);}
+@media(max-width:900px){.problem{padding:4rem 1.5rem;}.problem-inner{grid-template-columns:1fr;gap:3rem;}}
+
+/* ── PROCESS ── */
+.process{padding:6rem 3rem;background:var(--cream2);}
+.process-inner{max-width:1100px;margin:0 auto;}
+.process-head{text-align:center;margin-bottom:4rem;}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.process-grid::before{content:'';position:absolute;top:2.2rem;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,169,110,0.3),var(--gold));z-index:0;}
+.process-step{text-align:center;padding:0 1.5rem;position:relative;z-index:1;}
+.process-num{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--navy);font-family:var(--fh);font-size:1.1rem;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;}
+.process-title{font-family:var(--fh);font-size:1.1rem;font-weight:400;color:var(--navy);margin-bottom:0.6rem;}
+.process-desc{font-size:0.8rem;line-height:1.75;color:var(--light);}
+@media(max-width:768px){.process{padding:4rem 1.5rem;}.process-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}.process-grid::before{display:none;}}
+@media(max-width:480px){.process-grid{grid-template-columns:1fr;}}
+
+/* ── TESTIMONIALS ── */
+.testimonials{padding:6rem 3rem;background:var(--white);}
+.testimonials-inner{max-width:1100px;margin:0 auto;}
+.testimonials-head{text-align:center;margin-bottom:4rem;}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.testi-card{background:var(--cream);padding:2.2rem;border-bottom:2px solid var(--gold);position:relative;}
+.testi-stars{color:var(--gold);font-size:0.85rem;letter-spacing:2px;margin-bottom:1rem;}
+.testi-quote-mark{font-family:var(--fh);font-size:4rem;font-weight:300;color:var(--gold);line-height:0.6;margin-bottom:0.8rem;opacity:0.4;}
+.testi-text{font-size:0.88rem;line-height:1.85;color:var(--mid);font-style:italic;margin-bottom:1.5rem;}
+.testi-highlight{display:inline-block;background:rgba(201,169,110,0.12);padding:0.4rem 0.8rem;font-size:0.78rem;font-weight:600;color:var(--navy);margin-bottom:1.2rem;border-left:2px solid var(--gold);}
+.testi-author{display:flex;align-items:center;gap:10px;}
+.testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.95rem;font-weight:600;flex-shrink:0;}
+.testi-name{font-size:0.85rem;font-weight:600;color:var(--navy);}
+.testi-role{font-size:0.72rem;color:var(--light);}
+@media(max-width:900px){.testimonials{padding:4rem 1.5rem;}.testimonials-grid{grid-template-columns:1fr;gap:1.5rem;}}
+
+/* ── FINAL CTA ── */
+.cta-section{padding:7rem 3rem;background:var(--navy);text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=60') center/cover;opacity:0.07;filter:grayscale(40%);}
+.cta-section::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,169,110,0.08) 0%,transparent 65%);}
+.cta-inner{position:relative;z-index:2;max-width:600px;margin:0 auto;}
+.cta-eyebrow{font-size:0.65rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.cta-h2{font-family:var(--fh);font-size:clamp(2.2rem,5vw,4rem);font-weight:300;color:var(--white);line-height:1.1;margin-bottom:0.8rem;}
+.cta-h2 em{font-style:italic;color:var(--gold);}
+.cta-sub{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:2.5rem;}
+.cta-urgency{display:inline-block;border:1px solid rgba(201,169,110,0.3);color:rgba(255,255,255,0.55);padding:0.5rem 1.2rem;font-size:0.72rem;letter-spacing:0.12em;margin-bottom:2rem;}
+@media(max-width:600px){.cta-section{padding:5rem 1.5rem;}}
+
+/* ── FOOTER ── */
+.footer{background:#111;padding:3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;border-top:1px solid rgba(201,169,110,0.1);}
+.footer-brand{font-family:var(--fh);font-size:1rem;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.4);text-transform:uppercase;}
+.footer-brand span{color:var(--gold);}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap;}
+.footer-links a{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);transition:color 0.2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;text-align:center;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.05);}
+@media(max-width:600px){.footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:200;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.35);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;}
+.wa-float:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(37,211,102,0.45);}
+.wa-float svg{width:28px;height:28px;fill:white;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.3s;}
+.reveal-delay-4{transition-delay:0.4s;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-logo">Anna <span>Shevchenko</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#process">Process</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="https://wa.me/971529475070" class="nav-cta">Book Now</a>
+  </div>
+  <div class="nav-hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">GCC Makeup Artist of the Year 2021</div>
+    <h1 class="hero-h1">
+      Dubai's Award-<br>Winning<br>
+      <em>Makeup Artist.</em>
+    </h1>
+    <p class="hero-sub">MAC-trained. GCC award-winning. Available across Dubai for bridal, editorial, events, and celebrity work.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/971529475070" class="btn-primary">Book Your Date →</a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">670+</div>
+      <div class="hero-stat-label">Looks Delivered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">15+</div>
+      <div class="hero-stat-label">Years Experience</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">2021</div>
+      <div class="hero-stat-label">GCC MUA of the Year</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      GCC MUA of the Year 2021
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Ex-MAC Cosmetics Artist
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Dubai-Based · Available to Travel
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Educator @aofmakeup
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      English &amp; Russian Speaking
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="intro" id="about">
+  <div class="intro-inner">
+    <div class="intro-img-wrap reveal">
+      <img class="intro-img" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80" alt="Anna Shevchenko Makeup Artist Dubai">
+      <div class="intro-img-badge">Award-Winning MUA<br>Dubai, UAE</div>
+    </div>
+    <div class="intro-text">
+      <div class="section-eyebrow reveal">Meet Anna</div>
+      <h2 class="section-h2 reveal reveal-delay-1">
+        More than beautiful —<br><em>unforgettable.</em>
+      </h2>
+      <p class="intro-body reveal reveal-delay-2">
+        Anna Shevchenko has been working in professional makeup for over 15 years — trained by MAC Cosmetics, recognised as GCC Makeup Artist of the Year 2021, featured in CNN, and now an educator for @aofmakeup. She works with brides, celebrities, editorial teams, and everyday clients who want to feel extraordinary.
+      </p>
+      <ul class="intro-creds reveal reveal-delay-2">
+        <li class="intro-cred">GCC Makeup Artist of the Year 2021</li>
+        <li class="intro-cred">Ex-MAC Cosmetics professional artist</li>
+        <li class="intro-cred">Educator at @aofmakeup</li>
+        <li class="intro-cred">Featured in CNN &amp; international press</li>
+        <li class="intro-cred">Bilingual: English &amp; Russian</li>
+      </ul>
+      <a href="https://wa.me/971529475070" class="btn-primary reveal reveal-delay-3">Book a Consultation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-head">
+      <div class="section-eyebrow reveal">What I do</div>
+      <h2 class="section-h2 reveal reveal-delay-1">Services crafted for<br><em>every occasion.</em></h2>
+    </div>
+    <div class="services-grid reveal reveal-delay-2">
+      <div class="svc-card">
+        <div class="svc-icon">💍</div>
+        <div class="svc-line"></div>
+        <div class="svc-name">Bridal Makeup</div>
+        <div class="svc-desc">Your most important day deserves a flawless look. Full bridal makeup with optional trial, prep consultation, and on-day service included.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">✨</div>
+        <div class="svc-line"></div>
+        <div class="svc-name">Event &amp; Evening Glam</div>
+        <div class="svc-desc">Red carpet, gala, corporate event, or girls' night out — polished, long-lasting looks delivered to your location across Dubai.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📸</div>
+        <div class="svc-line"></div>
+        <div class="svc-name">Editorial &amp; Shoots</div>
+        <div class="svc-desc">Commercial campaigns, fashion shoots, and creative editorial. MAC-trained precision built for the lens — all day, every shot.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🎓</div>
+        <div class="svc-line"></div>
+        <div class="svc-name">Makeup Education</div>
+        <div class="svc-desc">1-to-1 masterclasses and group workshops for aspiring MUAs. Learn from a GCC award-winner with 15+ years of professional experience.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="problem-inner">
+    <div class="problem-left">
+      <div class="section-eyebrow reveal">Sound familiar?</div>
+      <h2 class="section-h2 reveal reveal-delay-1">Your wedding look is one<br>of the most <em>photographed<br>moments</em> of your life.</h2>
+      <p class="problem-intro reveal reveal-delay-2">Getting the wrong MUA doesn't just mean a bad photo — it means a moment you can't redo. You deserve an artist who truly understands your face, your vision, and your day.</p>
+      <div class="problem-turn reveal reveal-delay-3">
+        <p>That's exactly why brides and clients across Dubai trust Anna — not just for her award, <em>but for the way she makes every client feel seen.</em></p>
+      </div>
+    </div>
+    <div class="problem-list reveal reveal-delay-1">
+      <div class="pain-item">
+        <span class="pain-strong">You've seen beautiful work online —</span>
+        <span class="pain-rest">but you're not sure who you can actually trust with your face on the most important day of your life.</span>
+      </div>
+      <div class="pain-item">
+        <span class="pain-strong">You've had makeup done before</span>
+        <span class="pain-rest">and left the chair feeling like a different person — not in a good way. You want someone who listens.</span>
+      </div>
+      <div class="pain-item">
+        <span class="pain-strong">Dubai wedding season fills up fast —</span>
+        <span class="pain-rest">and the artists worth booking are already taken months in advance. Waiting costs you options.</span>
+      </div>
+      <div class="pain-item">
+        <span class="pain-strong">You want to look like yourself —</span>
+        <span class="pain-rest">only extraordinary. Not overdone. Not generic. A look that feels right for your face, your style, and your moment.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="process-head">
+      <div class="section-eyebrow reveal">How it works</div>
+      <h2 class="section-h2 reveal reveal-delay-1">From first message<br><em>to flawless look.</em></h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">1</div>
+        <div class="process-title">Enquire</div>
+        <div class="process-desc">WhatsApp Anna with your date, event type, and location. She responds within 24 hours.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">2</div>
+        <div class="process-title">Consult</div>
+        <div class="process-desc">A free 15-minute call to discuss your vision, skin type, inspiration images, and look.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">3</div>
+        <div class="process-title">Confirm</div>
+        <div class="process-desc">Secure your date with a deposit. Bridal trial scheduled if booked at this stage.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-num">4</div>
+        <div class="process-title">Transform</div>
+        <div class="process-desc">Anna arrives, sets up, and creates your look. You walk out feeling extraordinary.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-head">
+      <div class="section-eyebrow reveal">Client love</div>
+      <h2 class="section-h2 reveal reveal-delay-1">Clients who trusted Anna<br><em>with their most important moments.</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">Anna made me feel so at ease from the very first message. On the day, I looked and felt better than I ever imagined. Every single photo is perfect.</p>
+        <div class="testi-highlight">Bride, Dubai Wedding 2024</div>
+        <div class="testi-author">
+          <div class="testi-avatar">SA</div>
+          <div>
+            <div class="testi-name">Sara A.</div>
+            <div class="testi-role">Bride — Dubai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">I've had my makeup done by many artists and Anna is in a completely different league. She listened to exactly what I wanted and delivered something even better.</p>
+        <div class="testi-highlight">Event glam — repeat booking</div>
+        <div class="testi-author">
+          <div class="testi-avatar">NM</div>
+          <div>
+            <div class="testi-name">Natalia M.</div>
+            <div class="testi-role">Event Client — Dubai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">As a photographer, I work with a lot of MUAs. Anna's work photographs beautifully — the quality holds all day and she's a total professional on set.</p>
+        <div class="testi-highlight">Fashion photographer — ongoing collab</div>
+        <div class="testi-author">
+          <div class="testi-avatar">KR</div>
+          <div>
+            <div class="testi-name">Khalid R.</div>
+            <div class="testi-role">Fashion Photographer — Dubai</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Limited availability</div>
+    <h2 class="cta-h2">Bridal season<br><em>books fast.</em></h2>
+    <p class="cta-sub">Limited dates available for the 2025–2026 season. WhatsApp Anna now to check availability and secure your date.</p>
+    <div class="cta-urgency">2025–2026 Bridal Season — Dates Filling Now</div><br><br>
+    <a href="https://wa.me/971529475070" class="btn-primary" style="display:inline-flex;">WhatsApp Anna Now →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Anna <span>Shevchenko</span></div>
+  <div class="footer-links">
+    <a href="https://instagram.com/letsmakeupwithanna" target="_blank">@letsmakeupwithanna</a>
+    <a href="tel:+971529475070">+971 52 947 5070</a>
+    <a href="https://wa.me/971529475070">WhatsApp</a>
+  </div>
+  <div class="footer-copy">© 2026 Anna Shevchenko · Award-Winning Makeup Artist · Dubai, UAE · Built by Socinest Global</div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/971529475070" class="wa-float" target="_blank" aria-label="WhatsApp Anna">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(r => observer.observe(r));
+
+// Mobile menu (basic toggle)
+const hamburger = document.getElementById('hamburger');
+hamburger.addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  if(links.style.display === 'flex') {
+    links.style.display = 'none';
+  } else {
+    links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(28,28,28,0.98);padding:1.5rem 2rem;gap:1.2rem;backdrop-filter:blur(12px);';
+  }
+});
+</script>
+</body>
+</html>
